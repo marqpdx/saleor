@@ -37,3 +37,4 @@ webpack-bundle.json
 !/templates/templated_email/compiled/.gitkeep
 
 env
+package-lock.json
