@@ -322,7 +322,7 @@ AUTH_USER_MODEL = 'account.User'
 
 LOGIN_URL = '/account/login/'
 
-DEFAULT_COUNTRY = os.environ.get('DEFAULT_COUNTRY')
+DEFAULT_COUNTRY = os.environ.get('DEFAULT_COUNTRY', 'GB')
 DEFAULT_CURRENCY = os.environ.get('DEFAULT_CURRENCY')
 DEFAULT_DECIMAL_PLACES = get_currency_fraction(DEFAULT_CURRENCY)
 DEFAULT_MAX_DIGITS = 12
@@ -571,7 +571,9 @@ RAZORPAY = 'razorpay'
 STRIPE = 'stripe'
 
 CHECKOUT_PAYMENT_GATEWAYS = {
-    DUMMY: pgettext_lazy('Payment method name', 'Dummy gateway')}
+    # DUMMY: pgettext_lazy('Payment method name', 'Dummy gateway')
+    STRIPE: pgettext_lazy('Payment method name', 'Stripe')
+    }
 
 PAYMENT_GATEWAYS = {
     DUMMY: {
@@ -599,10 +601,9 @@ PAYMENT_GATEWAYS = {
     STRIPE: {
         'module': 'saleor.payment.gateways.stripe',
         'connection_params': {
-            'public_key': os.environ.get('STRIPE_PUBLIC_KEY'),
-            'secret_key': os.environ.get('STRIPE_SECRET_KEY'),
-            'store_name': os.environ.get(
-                'STRIPE_STORE_NAME', 'Saleor'),
+            'public_key': os.environ.get('STRIPE_PUBLIC_KEY', 'pk_test_4LRGWIUqxlzC0SdwOWHSWAqq'),
+            'secret_key': os.environ.get('STRIPE_SECRET_KEY', 'sk_test_4LRGWBwzyAM27IXzMuBQX2MD'),
+            'store_name': os.environ.get('STRIPE_STORE_NAME', 'Breathing Room'),
             'store_image': os.environ.get('STRIPE_STORE_IMAGE', None),
             'prefill': get_bool_from_env('STRIPE_PREFILL', True),
             'remember_me': os.environ.get('STRIPE_REMEMBER_ME', True),
