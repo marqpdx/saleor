@@ -572,7 +572,8 @@ RAZORPAY = 'razorpay'
 STRIPE = 'stripe'
 
 CHECKOUT_PAYMENT_GATEWAYS = {
-    DUMMY: pgettext_lazy('Payment method name', 'Dummy gateway')}
+    STRIPE: pgettext_lazy('Payment method name', 'Stripe')
+    }
 
 PAYMENT_GATEWAYS = {
     DUMMY: {
@@ -600,10 +601,10 @@ PAYMENT_GATEWAYS = {
     STRIPE: {
         'module': 'saleor.payment.gateways.stripe',
         'connection_params': {
-            'public_key': os.environ.get('STRIPE_PUBLIC_KEY'),
-            'secret_key': os.environ.get('STRIPE_SECRET_KEY'),
+            'public_key': os.environ.get('STRIPE_PUBLIC_KEY', 'pk_test_4LRGWIUqxlzC0SdwOWHSWAqq'),
+            'secret_key': os.environ.get('STRIPE_SECRET_KEY','sk_test_4LRGWBwzyAM27IXzMuBQX2MD'),
             'store_name': os.environ.get(
-                'STRIPE_STORE_NAME', 'Saleor'),
+                'STRIPE_STORE_NAME', 'Breathing Room'),
             'store_image': os.environ.get('STRIPE_STORE_IMAGE', None),
             'prefill': get_bool_from_env('STRIPE_PREFILL', True),
             'remember_me': os.environ.get('STRIPE_REMEMBER_ME', True),
