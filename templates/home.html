@@ -3,14 +3,24 @@
 
 {% block content %}
   <div class="home">
+
+    {% if products %}
+      <div class="home__featured">
+        <h2 class="text-center">{% trans "Featured items" context "Homepage title" %}</h2>
+        <div class="row">
+          {% include "product/_items.html" %}
+        </div>
+      </div>
+    {% endif %}
+
     <div class="row">
       <div class="col-sm-12 home__block1">
         <div class="home--square">
           <div class="home--content">
             <div class="home--content-wrapper">
               <div class="home--content-inner">
-                <h1>{% trans "Promo & Sale" context "Homepage title" %}</h1>
-                <h2>{% trans "from the Northpole" context "Homepage title" %}</h2>
+                <h1>{% trans "Breathing Room" context "Homepage title" %}</h1>
+                <h2>{% trans "for everyone" context "Homepage title" %}</h2>
                   <a class="btn btn-secondary home__button" href="#">
                     {% trans "Shop now" context "Homepage action" %}
                   </a>
@@ -20,7 +30,7 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" style="display:none">
       <div class="col-sm-12 col-md-6 home__block2">
         <div class="home--square">
           <div class="home--content">
@@ -46,14 +56,6 @@
         </div>
       </div>
     </div>
-    {% if products %}
-      <div class="home__featured">
-        <h2 class="text-center">{% trans "Featured products" context "Homepage title" %}</h2>
-        <div class="row">
-          {% include "product/_items.html" %}
-        </div>
-      </div>
-    {% endif %}
     <script type="application/ld+json">{{ webpage_schema|safe }}</script>
   </div>
 {% endblock %}
